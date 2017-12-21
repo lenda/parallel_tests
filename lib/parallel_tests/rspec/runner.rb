@@ -19,7 +19,7 @@ module ParallelTests
             ParallelTests.with_ruby_binary("bin/rspec")
           when ParallelTests.bundler_enabled?
             cmd = (run("bundle show rspec-core") =~ %r{Could not find gem.*} ? "spec" : "rspec")
-            "bundle exec #{cmd}"
+            "#{cmd}"
           else
             %w[spec rspec].detect{|cmd| system "#{cmd} --version > #{DEV_NULL} 2>&1" }
           end

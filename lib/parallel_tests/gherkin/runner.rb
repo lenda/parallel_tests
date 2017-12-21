@@ -102,7 +102,7 @@ module ParallelTests
           when File.exist?("bin/#{name}")
             ParallelTests.with_ruby_binary("bin/#{name}")
           when ParallelTests.bundler_enabled?
-            "bundle exec #{name}"
+            "#{name}"
           when File.file?("script/#{name}")
             ParallelTests.with_ruby_binary("script/#{name}")
           else
