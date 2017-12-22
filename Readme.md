@@ -7,6 +7,15 @@
 Speedup Test::Unit + RSpec + Cucumber + Spinach by running parallel on multiple CPU cores.<br/>
 ParallelTests splits tests into even groups (by number of lines or runtime) and runs each group in a single process with its own database.
 
+Lenda Travis Fix Branch
+=======================
+
+Changes made:
+
+- Reverts Cucumber failure logger to older version to acommodate older Cucumber
+- Don't use bundle exec to spawn cucumber or rspec if already in a bundle environment, for some reason this does not work on Travis
+
+
 Setup for Rails
 ===============
 [RailsCasts episode #413 Fast Tests](http://railscasts.com/episodes/413-fast-tests)
