@@ -6,17 +6,15 @@ module ParallelTests
     class FailuresLogger < ::Cucumber::Formatter::Rerun
       include ParallelTests::Gherkin::Io
 
-      def initialize(config)
-        super
-        @io = prepare_io(config.out_stream)
+      def initialize(runtime, path_or_io, options)
+        @io = prepare_io(path_or_io)
       end
 
-      def done
-        return if @failures.empty?
-        lock_output do
-          @failures.each do |file, lines|
-            lines.each do |line|
-              @io.print "#{file}:#{line} "
+      def after_feature(feature)
+        unless @lines.empty?
+          lock_output do
+            @lines.each do |line|
+              @io.puts "#{feature.file}:#{line}"
             end
           end
         end
